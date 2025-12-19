@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: ijazah_db
+      MYSQL_USER: n8n
+      MYSQL_PASSWORD: n8n123
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"   # OPTIONAL (untuk akses dari host)
+    networks:
+      - n8n_net
+
+  n8n:
+    build: .
+    container_name: n8n
+    depends_on:
+      - mysql
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_PORT=5678
+      - N8N_HOST=localhost
+      - N8N_EDITOR_BASE_URL=http://localhost:5678
+      - GENERIC_TIMEZONE=Asia/Jakarta
+      - TZ=Asia/Jakarta
+    volumes:
+      - /root/n8n/data:/home/node/.n8n
+      - /root/n8n/scripts:/app/scripts
+      - /root/n8n/uploads:/tmp/uploads
+    restart: unless-stopped
+    networks:
+      - n8n_net
+
+volumes:
+  mysql_data:
+
+networks:
+  n8n_net:
+    driver: bridge

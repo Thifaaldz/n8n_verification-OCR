@@ -1,0 +1,6 @@
+2025/12/18-07:40:03.643 9a Reusing MANIFEST /app/.sessions/webjs/default/session-default/Default/Local Storage/leveldb/MANIFEST-000001
+2025/12/18-07:40:03.659 9a Recovering log #7
+2025/12/18-07:40:03.661 9a Reusing old log /app/.sessions/webjs/default/session-default/Default/Local Storage/leveldb/000007.log 
+2025/12/18-07:43:04.429 9d Level-0 table #11: started
+2025/12/18-07:43:04.438 9d Level-0 table #11: 13043 bytes OK
+2025/12/18-07:43:04.447 9d Delete type=0 #7
